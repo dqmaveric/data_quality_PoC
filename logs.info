@@ -1,0 +1,26 @@
+import logging
+from datetime import datetime
+import pytz
+current_date = datetime.now(pytz.timezone('Asia/Kolkata')).strftime('%Y%m%d_%H%M%S')
+path = 'srk'+current_date+'.log'
+#print(path)
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+import logging
+#logging.basicConfig(filename = path,format='%(asctime)s %(levelname)s %(message)s',datefmt='%d/%m/%Y %I:%M:%S %p',filemode='a')
+logger = logging.getLogger('DQ_logger')
+logger.setLevel(logging.INFO)
+FileHandler=logging.FileHandler(path,mode = 'a')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s',datefmt='%d/%m/%Y %I:%M:%S %p')
+FileHandler.setFormatter(formatter)
+logger.addHandler(FileHandler)
+#logger.debug('debug message')
+logger.info('this is info message')
+#print('Hello, this is monday')
+#print('DQ Processing')
+logger.info('None')
+x = 10
+y = 0
+print(y/x)
+logger.error('None')
+logger.critical('None')
